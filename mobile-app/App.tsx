@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { RootNavigation } from './navigation/RootNavigation';
+import FlashMessage from 'react-native-flash-message';
+import { colors } from './utils/colors';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <RootNavigation />
+        <FlashMessage
+          position="top"
+          autoHide
+          hideStatusBar
+          titleStyle={styles.toastStyle}
+          textStyle={styles.toastStyle}
+        />
+      </SafeAreaView>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: colors.bg,
+  },
+  toastStyle: {
+    textAlign: 'center',
   },
 });
